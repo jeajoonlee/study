@@ -1,0 +1,76 @@
+git_study
+
+git 'object'
+
+
+1. git add
+- index: object_ID(type:BLOB)를 각 파일마다 하나씩 채번
+- object_ID: 각 파일의 내용을 담고 있음
+
+2. git commit
+- COMMIT_object: parent(이전 커밋 object_ID), tree(add 할때 채번된 object_ID를 가지고옴), 작성자, committer
+
+결국 계층형으로 서로 연결되어 있음.
+
+
+working directory - staging area(index) - local repository - remote repository
+
+
+$ cat f1.txt
+
+$ git log --branches --decorate --graph 
+-- 브랜치의 
+
+$ git log --branches --decorate --graph --oneline
+
+$ git log master..exp_
+
+
+
+
+
+
+$ git diff master..exp_02
+         -- 범위.. --기준
+
+diff --git a/f1.txt b/f1.txt
+index da0ce4a..b749883 100644
+--- a/f1.txt
++++ b/f1.txt
+@@ -1 +1,2 @@
+-테스트 3
++테스트 4
++2번째
+diff --git a/f3.txt b/f3.txt
+index c20df5d..db1c726 100644
+--- a/f3.txt
++++ b/f3.txt
+@@ -1,2 +1 @@
+ source: 2 sec: test
+-변경점
+diff --git a/f4.txt b/f4.txt
+new file mode 100644
+index 0000000..9793a46
+--- /dev/null
++++ b/f4.txt
+@@ -0,0 +1,2 @@
++테스트 1
++복사본
+
+
+
+$ git checkout master
+$ git merge exp_02
+
+Merge made by the 'ort' strategy.
+ f1.txt | 3 ++-
+ f4.txt | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+ create mode 100644 f4.txt
+
+
+$ git branch -d exp_
+
+
+
+$ git remote add orgin https://github.com/jeajoonlee/study.git
